@@ -18,8 +18,11 @@ class RomanNumbers
 
   def translate number
     roman = ''
-    ROMAN_MAP.keys.sort{ |x,y| y <=> x }.each do |value|
-      count, number = number.divmod(value)
+    # ROMAN_MAP.keys.sort{ |x,y| y <=> x }.each do |value|
+    ROMAN_MAP.keys.sort.reverse.each do |value|
+      count = number / value
+      number = number % value
+      # count, number = number.divmod(value)
       roman << ROMAN_MAP[value].to_s * count
     end
     roman
